@@ -3,47 +3,61 @@ package com.techyourchance.coroutines.common
 import android.os.Bundle
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavController.RootFragmentListener
+import com.techyourchance.coroutines.demonstrations.backgroundthread.BackGroundThreadDemoFragment
+import com.techyourchance.coroutines.demonstrations.basiccoroutines.BasicCoroutinesDemoFragment
 import com.techyourchance.coroutines.demonstrations.uithread.UiThreadDemoFragment
+import com.techyourchance.coroutines.exercises.exercise1.Exercise1Fragment
 import com.techyourchance.coroutines.home.HomeFragment
 
-class ScreensNavigator(private val mFragNavController: FragNavController) {
+class ScreensNavigator(private val fragNavController: FragNavController) {
 
     fun init(savedInstanceState: Bundle?) {
-        mFragNavController.rootFragmentListener = object : RootFragmentListener {
+        fragNavController.rootFragmentListener = object : RootFragmentListener {
             override val numberOfRootFragments get() = 1
 
             override fun getRootFragment(index: Int) = HomeFragment.newInstance()
         }
 
-        mFragNavController.initialize(FragNavController.TAB1, savedInstanceState)
+        fragNavController.initialize(FragNavController.TAB1, savedInstanceState)
     }
 
     fun onSaveInstanceState(outState: Bundle?) {
-        mFragNavController.onSaveInstanceState(outState)
+        fragNavController.onSaveInstanceState(outState)
     }
 
-    fun isRootScreen() = mFragNavController.isRootFragment
+    fun isRootScreen() = fragNavController.isRootFragment
 
     fun navigateBack(): Boolean {
-        if (mFragNavController.isRootFragment) {
+        if (fragNavController.isRootFragment) {
             return false
         } else {
-            mFragNavController.popFragment()
+            fragNavController.popFragment()
             return true
         }
     }
 
     fun navigateUp() {
-        mFragNavController.popFragment()
+        fragNavController.popFragment()
     }
 
     fun toHomeScreen() {
-        mFragNavController.clearStack()
-        mFragNavController.pushFragment(HomeFragment.newInstance())
+        fragNavController.clearStack()
+        fragNavController.pushFragment(HomeFragment.newInstance())
     }
 
     fun toUiThreadDemonstration() {
-        mFragNavController.pushFragment(UiThreadDemoFragment.newInstance())
+        fragNavController.pushFragment(UiThreadDemoFragment.newInstance())
     }
 
+    fun toBackGroundThreadDemo() {
+        fragNavController.pushFragment(BackGroundThreadDemoFragment.newInstance())
+    }
+
+    fun toBasicCoroutinesDemo() {
+        fragNavController.pushFragment(BasicCoroutinesDemoFragment.newInstance())
+    }
+
+    fun toExercise1() {
+        fragNavController.pushFragment(Exercise1Fragment.newInstance())
+    }
 }

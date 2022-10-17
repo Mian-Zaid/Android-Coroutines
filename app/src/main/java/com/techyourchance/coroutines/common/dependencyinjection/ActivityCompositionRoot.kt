@@ -5,10 +5,11 @@ import com.ncapdevi.fragnav.FragNavController
 import com.techyourchance.coroutines.R
 import com.techyourchance.coroutines.common.ScreensNavigator
 import com.techyourchance.coroutines.common.ToolbarDelegate
+import com.techyourchance.coroutines.exercises.exercise1.GetReputationEndpoint
 
 class ActivityCompositionRoot(
-        private val activity: FragmentActivity,
-        private val appCompositionRoot: ApplicationCompositionRoot
+    private val activity: FragmentActivity,
+    private val appCompositionRoot: ApplicationCompositionRoot
 ) {
 
     val toolbarManipulator get() = activity as ToolbarDelegate
@@ -20,6 +21,8 @@ class ActivityCompositionRoot(
     private val fragNavController get() = FragNavController(fragmentManager, R.id.frame_content)
 
     private val fragmentManager get() = activity.supportFragmentManager
+
+    val getReputationEndpoint get() = GetReputationEndpoint()
 
 
 }

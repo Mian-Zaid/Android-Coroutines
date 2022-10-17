@@ -16,7 +16,11 @@ class HomeFragment : BaseFragment(), HomeArrayAdapter.Listener {
     private lateinit var listScreensReachableFromHome: ListView
     private lateinit var adapterScreensReachableFromHome: HomeArrayAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         adapterScreensReachableFromHome = HomeArrayAdapter(requireContext(), this)
@@ -33,6 +37,9 @@ class HomeFragment : BaseFragment(), HomeArrayAdapter.Listener {
     override fun onScreenClicked(screenReachableFromHome: ScreenReachableFromHome) {
         when (screenReachableFromHome) {
             ScreenReachableFromHome.UI_THREAD_DEMONSTRATION -> screensNavigator.toUiThreadDemonstration()
+            ScreenReachableFromHome.BACKGROUND_THREAD_DEMO -> screensNavigator.toBackGroundThreadDemo()
+            ScreenReachableFromHome.BASIC_COROUTINES_DEMO -> screensNavigator.toBasicCoroutinesDemo()
+            ScreenReachableFromHome.EXERCISE_1 -> screensNavigator.toExercise1()
         }
     }
 
