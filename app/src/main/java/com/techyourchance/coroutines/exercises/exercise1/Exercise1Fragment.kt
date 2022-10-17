@@ -60,7 +60,7 @@ class Exercise1Fragment : BaseFragment() {
             coroutinesScope.launch {
                 logThreadInfo("button callback")
                 btnGetReputation.isEnabled = false
-                
+
                 val reputation = getReputationForUser(edtUserId.text.toString())
 
                 Toast.makeText(requireContext(), "reputation: $reputation", Toast.LENGTH_SHORT)
@@ -83,7 +83,6 @@ class Exercise1Fragment : BaseFragment() {
 
             reputation
         }
-
     }
 
     private fun logThreadInfo(message: String) {
